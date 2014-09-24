@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Generate melody</title>
+  </head>
+
+  <body>
+    <div>
+      <div class="title">Random process</div>
+      <div class="content">
+        <canvas height="200" width="600" id="random-process">Refresh browser</canvas>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript">
+      var process = new HarmonicRandomProcess([20, 10, 10, 10]);
+      ctx.fillStyle = 'orange';
+      for (var i = 0; i < canvas.width; ++i) {
+        var t = 10 * i / canvas.width;
+        var v = canvas.height / 2 + Math.round(process.get(t));
+        console.log(i, v);
+        ctx.fillRect(i, v, 1, 1);
+      }
+    </script>
+  </body>
+</html>
