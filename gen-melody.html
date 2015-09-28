@@ -15,14 +15,25 @@
 
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript">
-      var process = new HarmonicRandomProcess([20, 10, 10, 10]);
+      var amplitudes = [20];
+      for (var i = 0; i < 25; ++i) {
+        amplitudes.push(Math.random() * 10);
+      }
+      var process = new HarmonicRandomProcess(amplitudes);
       ctx.fillStyle = 'orange';
+      ctx.strokeStyle = 'orange';
       for (var i = 0; i < canvas.width; ++i) {
-        var t = 10 * i / canvas.width;
+        var t = 1 * i / canvas.width;
         var v = canvas.height / 2 + Math.round(process.get(t));
         console.log(i, v);
-        ctx.fillRect(i, v, 1, 1);
+        if (i == 0) {
+          ctx.moveTo(i, v);
+        } else {
+          ctx.lineTo(i, v);
+        }
+        //ctx.fillRect(i, v, 1, 1);
       }
+      ctx.stroke();
     </script>
   </body>
 </html>
